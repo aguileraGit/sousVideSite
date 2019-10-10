@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.5">
+  <title>Samoa the Sous Vide Cooker</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/starter-template/">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Awesome Font - https://fontawesome.bootstrapcheatsheets.com/# - https://www.bootstrapcdn.com/fontawesome/ -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- https://tempusdominus.github.io/bootstrap-4/Usage/ -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+
+
+
+  <!-- Masthead Snippet - https://startbootstrap.com/snippets/full-image-header/ -->
+  <style>
+    .masthead {
+      height: 100vh;
+      min-height: 500px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Samoa the Sous Vide Cooker</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="startButton">Start</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="stopButton">Stop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="startTimerButton">Start Timer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="stopTimerButton">Stop Timer</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Full Page Image Header with Vertically Centered Content -->
+  <header class="masthead" id="mastheadID">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12 text-center">
+          <h1 class="font-weight-bold text-uppercase display-1" id="status">UPDATING STATUS...</h1>
+          <div class="lead" id="tempUpdate">...</div>
+          <hr width=70%>
+          <!-- Actions -->
+
+
+          <div class="row">
+            <div class="col-md-6 offset-md-3 text-left">
+              <div>
+                <!-- Link trigger modal -->
+                <i class="fa fa-plus-circle"></i><a data-toggle="modal" data-target="#exampleModalCenter">Add action</a>
+              </div>
+              <div id="actionList">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Action</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <!-- Begin Tabs - https://bootsnipp.com/snippets/5Mk0W -->
+          <div class="container">
+            <div class="justify-content-center">
+
+              <div class="card mt-3 tab-card">
+                <div class="card-header tab-card-header">
+                  <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link show active text-dark" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">Add Delay Start</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled text-muted" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false">Change LED</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-dark" id="three-tab" data-toggle="tab" href="#three" role="tab" aria-controls="Three" aria-selected="false">Set Temperature</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-dark" id="four-tab" data-toggle="tab" href="#four" role="tab" aria-controls="Four" aria-selected="false">Set Timer</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+
+                    <form method="post" name="dateTimeDelayStart">
+                      <div class="container">
+
+                        <!-- Datepicker -->
+                        <div class="form-group col-md-8 offset-md-2">
+                          <label for="datetimepicker1">Set Sous Vide Start Time</label>
+                          <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="dateTimePicker1" />
+                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                          </div>
+                          <small class="text-muted">
+                            Click on calendar icon
+                          </small>
+                        </div>
+
+                        <!-- Temperature -->
+                        <div class="form-group col-md-8 offset-md-2">
+                          <label for="delaySetTemperature">Set Sous Vide Target Start Temperature</label>
+                          <input class="form-control" type="text" id="delaySetTemperature" name="someTemp" placeholder="Set Temperature">
+                          <small class="text-muted">
+                            Optional. Will set the target temperature when Sous Vide is started.
+                          </small>
+                        </div>
+
+                        <div class=" form-group col-md-8 offset-md-2">
+                          <button class="btn btn-secondary" id="startDelayButton" onClick="return verifyNumberFn(dateTimeDelayStart.someTemp)">Start Delay</button>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+
+                  <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+                    <p class="card-text">Set LED. 0-255</p>
+                    <form>
+                      <div class="form-group">
+                        <div class="row align-items-center">
+                          <div class="col-sm">
+                            <input class="form-control" type="text" id="rVal" placeholder="Red 0-255">
+                          </div>
+                          <div class="col-sm">
+                            <input class="form-control" type="text" id="gVal" placeholder="Green 0-255">
+                          </div>
+                          <div class="col-sm">
+                            <input class="form-control" type="text" id="bVal" placeholder="Blue 0-255">
+                          </div>
+                        </div>
+
+                        <button class="btn btn-primary " name="submit" type="submit" id="setLEDButton">Set Led</button>
+                      </div>
+                    </form>
+                  </div>
+
+                  <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
+                    <form  method="post" name="setTempForm">
+
+                      <div class="form-group col-md-8 offset-md-2">
+                        <label for="setTempVal">Set Sous Vide Temperature</label>
+                        <input class="form-control" type="text" id="setTempVal" name="someTemp1" placeholder="0.0">
+                        <small class="text-muted">
+                          Must be a number less than 210F.
+                        </small>
+                      </div>
+
+                      <div class="form-group col-md-8 offset-md-2">
+                        <button class="btn btn-secondary" id="setTemperatureButton" onClick="return verifyNumberFn(setTempForm.someTemp1)">Set Temperature</button>
+                      </div>
+
+                    </form>
+                  </div>
+
+                  <div class="tab-pane fade p-3" id="four" role="tabpanel" aria-labelledby="four-tab">
+                    <p class="card-text"></p>
+                    <form method="post" name="setTimerForm">
+                      <div class="form-group col-md-8 offset-md-2">
+                        <label for="setTempVal">Set Sous Vide Timer</label>
+                          <input class="form-control" type="text" id="setTimerVal" name="someTemp2" placeholder="Zero minutes">
+                          <small class="text-muted">
+                            Must be an integer.
+                          </small>
+                        </div>
+
+                        <div class="form-group col-md-8 offset-md-2">
+                            <button class="btn btn-secondary" id="setTimerButton" onClick="return verifyNumberFn(setTimerForm.someTemp2)">Set Timer</button>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- End Tabs -->
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/2.0.0/trianglify.min.js"></script>
+  <script>
+    var pattern = Trianglify({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      x_colors: 'Reds',
+      y_colors: 'match_x',
+      palette: Trianglify.colorbrewer,
+    });
+
+    var mastHead = document.getElementById('mastheadID');
+    mastHead.style['background-image'] = 'url(' + pattern.png() + ')';
+  </script>
+
+
+  <!-- Unsure why this can't be with the rest of the scripts below
+     Pass id of link to delete event -->
+  <script>
+    function reply_click(clicked_id) {
+      console.log(clicked_id)
+      $.ajax({
+        url: "/delete-actions",
+        data: JSON.stringify({
+          actionID: clicked_id,
+        }),
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        processData: false,
+        success: function() {
+          //Remove the link
+          var toRemove = '#';
+          toRemove += clicked_id;
+          console.log(toRemove);
+          $(toRemove).remove();
+        },
+        fail: function() {
+          console.log('Failure')
+        }
+      });
+    }
+  </script>
+
+  <script>
+    $(document).ready(function() {
+
+      //Hide tab 2 - Set LED - Doesn't work for Anova
+      $('#two-tab').hide();
+
+      //Update status and temperature every x milliseconds
+      var myVar = setInterval(updateBackgroundStatus, 5000);
+
+      function updateBackgroundStatus() {
+        console.log('Getting Status')
+
+        $.getJSON("/get-background-status", function(result) {
+
+          $("#status").text(result['deviceStatus'])
+
+          var updateText = "Actual ";
+          updateText += result['currentTemperature'];
+          updateText += result['deviceUnit'];
+          updateText += ' - Set Point ';
+          updateText += result['setTemperature'];
+          updateText += result['deviceUnit'];
+
+          $("#tempUpdate").text(updateText);
+        });
+
+      }
+
+      //Update actions
+      $.getJSON("/view-actions", function(result) {
+        //console.log('Updating actions');
+
+        jQuery(result).each(function(i, item) {
+          //console.log(item.jobNumber, item.jobType, item.jobStartTime, item.jobTemperature)
+          var actionText = "<div id=\"actionID_";
+          actionText += item.jobNumber
+          actionText += "\""
+          actionText += " onClick=\"reply_click(this.id)\""
+          actionText += ">"
+          actionText += "<a class=\"text-dark\" href=\"#\"><i class=\"fa fa-minus-circle\" ";
+          actionText += "\"></i>"
+          actionText += " Starting Sous Vide @ "
+          actionText += item.jobStartTime
+
+          if (item.jobTemperature != '') {
+            actionText += " @ "
+            actionText += item.jobTemperature
+            actionText += "F"
+          }
+
+
+          actionText += "</a></div>"
+
+          $("#actionList").append(actionText)
+
+        })
+      });
+
+
+      //Process Change LED
+      $('#setLEDButton').click(function() {
+
+        var rVal = $('#rVal').val();
+        var bVal = $('#bVal').val();
+        var gVal = $('#gVal').val();
+
+        //Error checking
+        $.ajax({
+          url: "/set-led",
+          data: JSON.stringify({
+            rVal: rVal,
+            bVal: bVal,
+            gVal: gVal
+          }),
+          dataType: 'json',
+          type: 'post',
+          contentType: 'application/json',
+          processData: false,
+          success: function() {
+            console.log('Success')
+          },
+          fail: function() {
+            console.log('Failure')
+          }
+        });
+      });
+
+      //Start Sous Vide
+      $('#startButton').click(function() {
+        $.ajax({
+          url: "/start",
+          type: 'post',
+          contentType: 'application/json',
+          processData: false,
+          success: function() {
+            console.log('Success')
+          },
+          fail: function() {
+            console.log('Failure')
+          }
+        });
+      });
+
+      //Stop Sous Vide
+      $('#stopButton').click(function() {
+        $.ajax({
+          url: "/stop",
+          type: 'post',
+          contentType: 'application/json',
+          processData: false,
+          success: function() {
+            console.log('Success')
+          },
+          fail: function() {
+            console.log('Failure')
+          }
+        });
+      });
+
+      //Start Sous Vide Timer
+      $('#startTimerButton').click(function() {
+        $.ajax({
+          url: "/start-timer",
+          type: 'post',
+          contentType: 'application/json',
+          processData: false,
+          success: function() {
+            console.log('Success')
+          },
+          fail: function() {
+            console.log('Failure')
+          }
+        });
+      });
+
+      //Stop Sous Vide Timer
+      $('#stopTimerButton').click(function() {
+        $.ajax({
+          url: "/stop-timer",
+          type: 'post',
+          contentType: 'application/json',
+          processData: false,
+          success: function() {
+            console.log('Success')
+          },
+          fail: function() {
+            console.log('Failure')
+          }
+        });
+      });
+
+    });
+  </script>
+
+
+  <!-- Start Date time picker -->
+  <script type="text/javascript">
+    $(function() {
+      $('#datetimepicker1').datetimepicker();
+    });
+  </script>
+
+
+  <script>
+    //Every Tab calls this function when clicked.
+    //Function checks for floats/ints/blanks/etc (based on classInfo id and flags them for errors
+    //If any error is found, it focuses on input and applies invalid class
+    //Once all checks are completed, it'll sumbit based on the classInfo
+    function verifyNumberFn(classInfo) {
+
+      console.log(classInfo)
+
+      //Define regex expressions
+      var regexIntFloatLength = /(?:^ *$)|(?:^[1-9]$)|(?:^[1-9]?[0-9]{0,2}[1-9]$)|(?:^[1-9]?[0-9]?[1-9][0]$)|(?:^[1-9]?[1-9][0-9]?[0-9]?$)|(?:^[1-9][0-9]{0,3}$)|(?:^10000$)|(^([1-9]\d*(\.)\d*|0?(\.)\d*[1-9]\d*|[1-9]\d*)$)/;
+      var regexIntOnly = /(?:^[1-9]$)|(?:^[1-9]?[0-9]{0,2}[1-9]$)|(?:^[1-9]?[0-9]?[1-9][0]$)|(?:^[1-9]?[1-9][0-9]?[0-9]?$)|(?:^[1-9][0-9]{0,3}$)|(?:^10000$)/;
+      var floatOnly = /[0-9]+([.|,][0-9]+)?/;
+
+      //Track any errors - True -> error ->
+      var checkErrors = false;
+
+      //Check for int and float
+      if( classInfo.id == 'delaySetTemperature' || classInfo.id == 'setTempVal' ){
+        if (regexIntFloatLength.test(classInfo.value) == false) {
+
+          console.log('Checking combine float and int');
+
+          checkErrors = true;
+        }
+      }
+
+      //Check for float
+      if( classInfo.id == 'delaySetTemperature' ){
+        if (floatOnly.test(classInfo.value) == false) {
+
+          console.log('Checking float');
+
+          checkErrors = true;
+        }
+      }
+
+      //Check for blank
+      if( false ){
+        if (classInfo.value == " ") {
+
+          checkErrors = true;
+        }
+      }
+
+      //Check for Int
+      if( classInfo.id == 'setTimerVal' ){
+        if(regexIntOnly.test(classInfo.value) == false){
+          //checkErrors
+          checkErrors = true;
+        }
+      }
+
+      //Done checking
+      if(checkErrors){
+        //Update classes and shift focus
+        classInfo.focus();
+
+        var classID = "#"
+        classID += classInfo.id
+
+        $(classID).addClass("is-invalid");
+        return false;
+      }
+
+      //Process data per class
+      if (classInfo.id == 'delaySetTemperature'){
+        processDelayStartDateTime();
+      } else if (classInfo.id == 'setTempVal'){
+        processSetTemperatureButton();
+      } else if (classInfo.id == 'setTimerVal'){
+        processSetTimerButton();
+      }
+    }
+
+    function processDelayStartDateTime() {
+      //Passes -> process
+      var delayStartTime = $('#datetimepicker1').datetimepicker('viewDate');
+      var delayStartTemp = $('#delaySetTemperature').val()
+
+      $.ajax({
+        url: "/set-delayed-start",
+        data: JSON.stringify({
+          timeStart: delayStartTime,
+          temperatureSet: delayStartTemp
+        }),
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        processData: false,
+        success: function(result) {
+          console.log(result)
+        },
+        fail: function(result) {
+          console.log('Failure')
+        }
+      });
+
+      return true;
+    }
+
+    //Set Temperature
+    //$('#setTemperatureButton').click(function() {
+    function processSetTemperatureButton() {
+
+      var tempValue = $('#setTempVal').val();
+
+      $.ajax({
+        url: "/set-temp",
+        data: JSON.stringify({
+          temp: tempValue
+        }),
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        processData: false,
+        success: function() {
+          console.log('Success')
+        },
+        fail: function() {
+          console.log('Failure')
+        }
+      });
+    };
+
+    //Set Timer
+    //$('#setTimerButton').click(function() {
+    function processSetTimerButton() {
+
+      var timerValue = $('#setTimerVal').val();
+
+      $.ajax({
+        url: "/set-timer",
+        data: JSON.stringify({
+          minutes: timerValue
+        }),
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        processData: false,
+        success: function() {
+          console.log('Success')
+        },
+        fail: function() {
+          console.log('Failure')
+        }
+      });
+    };
+
+  </script>
+
+
+</body>
+
+</html>
+

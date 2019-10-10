@@ -1,0 +1,14 @@
+# These Docker builds are originally from  https://www.github.com/tiangolo
+# but have built on a raspberry pi specifically for a raspberrypi
+
+#FROM tiangolo/uwsgi-nginx-flask:python3.6
+FROM crawforc3/raspberrypi-uwsgi-nginx:latest
+FROM crawforc3/raspberrypi-uwsgi-nginx-flask:latest
+
+RUN pip install flask \
+    flask-wtf \
+    flask-sqlalchemy \
+    flask-migrate \
+    apscheduler
+
+COPY ./app /app
